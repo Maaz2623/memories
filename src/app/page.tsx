@@ -1,28 +1,27 @@
 "use client";
 import EmblaCarousel from "@/components/embla/embla-carousel";
-import { EmblaOptionsType } from "embla-carousel";
+import Memories from "@/components/memories";
+import { Separator } from "@/components/ui/separator";
 import React from "react";
 
 const HomePage = () => {
-  const OPTIONS: EmblaOptionsType = { loop: true };
-  // const SLIDE_COUNT = 8;
-  const SLIDES = [
-    "/mock/1.jpg",
-    "/mock/2.jpg",
-    "/mock/3.jpg",
-    "/mock/4.jpg",
-    "/mock/5.jpg",
-    "/mock/6.jpg",
-    "/mock/7.jpg",
-    "/mock/8.jpg",
-  ];
-
   return (
-    <>
-      <div className="border border-yellow-500 my-4">
-        <EmblaCarousel slides={SLIDES} options={OPTIONS} />
+    <div className="px-6 pt-10">
+      <div>
+        <h2 className="text-3xl flex font-semibold tracking-tight text-gray-900">
+          A Glimpse into <span className="text-emerald-500 mx-1">Our</span>
+          Cherished Moments
+        </h2>
+        <EmblaCarousel />
       </div>
-    </>
+      <Separator className="my-10" />
+      <div className="h-auto">
+        <h2 className="text-3xl flex font-semibold tracking-tight text-gray-900">
+          <span className="text-emerald-500 mx-1">Our</span>Book of Memories
+        </h2>
+        <Memories />
+      </div>
+    </div>
   );
 };
 

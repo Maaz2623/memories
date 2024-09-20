@@ -49,7 +49,7 @@ const Navbar = () => {
       <div className="flex-grow flex items-start justify-center cursor-default gap-1">
         <Hint label="Forever" duration={150}>
           <Image
-            src={`/assets/logo.png`}
+            src={`/assets/logo`}
             alt="logo"
             width={45}
             height={45}

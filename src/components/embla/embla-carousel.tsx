@@ -1,112 +1,37 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
-import { EmblaOptionsType } from "embla-carousel";
 import useEmblaCarousel from "embla-carousel-react";
-import AutoScroll from "embla-carousel-auto-scroll";
-import {
-  NextButton,
-  PrevButton,
-  usePrevNextButtons,
-} from "./embla-carousel-arrow-buttons";
-import { Button } from "../ui/button";
 import Image from "next/image";
+import React, { useEffect } from "react";
+import AutoScroll from "embla-carousel-auto-scroll";
+import { slides } from "../../../public/mock";
 
-type PropType = {
-  slides: string[];
-  options?: EmblaOptionsType;
-};
-
-const EmblaCarousel: React.FC<PropType> = (props) => {
-  const { slides, options } = props;
-  const [emblaRef, emblaApi] = useEmblaCarousel(options, [
-    AutoScroll({ playOnInit: false }),
-  ]);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const {
-    prevBtnDisabled,
-    nextBtnDisabled,
-    onPrevButtonClick,
-    onNextButtonClick,
-  } = usePrevNextButtons(emblaApi);
-
-  const onButtonAutoplayClick = useCallback(
-    (callback: () => void) => {
-      const autoScroll = emblaApi?.plugins()?.autoScroll;
-      if (!autoScroll) return;
-
-      const resetOrStop =
-        autoScroll.options.stopOnInteraction === false
-          ? autoScroll.reset
-          : autoScroll.stop;
-
-      resetOrStop();
-      callback();
-    },
-    [emblaApi]
-  );
-
-  const toggleAutoplay = useCallback(() => {
-    const autoScroll = emblaApi?.plugins()?.autoScroll;
-    if (!autoScroll) return;
-
-    const playOrStop = autoScroll.isPlaying()
-      ? autoScroll.stop
-      : autoScroll.play;
-    playOrStop();
-  }, [emblaApi]);
+const EmblaCarousel = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [AutoScroll()]);
 
   useEffect(() => {
-    const autoScroll = emblaApi?.plugins()?.autoScroll;
-    if (!autoScroll) return;
-
-    setIsPlaying(autoScroll.isPlaying());
-    emblaApi
-      .on("autoScroll:play", () => setIsPlaying(true))
-      .on("autoScroll:stop", () => setIsPlaying(false))
-      .on("reInit", () => setIsPlaying(autoScroll.isPlaying()));
+    if (emblaApi) {
+      console.log(emblaApi.slideNodes());
+    }
   }, [emblaApi]);
 
   return (
-    <div className="embla">
-      <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container py-4">
-          <div className="flex justify-between items-center">
-          <div className="bg-green-500 w-20" />
-          {slides.map((slide) => (
-            <div
-            className="embla__slide border w-[400px] h-[200px] border-blue-500 ml-4"
-            key={slide}
-            >
-              <Image src={slide} alt="image" fill />
-            </div>
+    <div className="w-full items-center relative">
+      <div className="bg-transparent w-32 h-[100%] absolute bg-gradient-to-l from-transparent via-white/50 to-white top-0 left-0 z-20" />
+      <div className="overflow-hidden my-2 p-4 w-full h-[30vh]" ref={emblaRef}>
+        <div className="flex w-1/4 h-full">
+          {slides.map((image) => (
+            <Image
+              src={image}
+              alt="image"
+              width={200}
+              height={100}
+              key={image}
+              className="ml-4 rounded-xl h-full hover:scale-105 transition-all"
+            />
           ))}
-          
-          </div>
         </div>
       </div>
-
-      <div className="embla__controls">
-        <div className="embla__buttons">
-          <PrevButton
-            onClick={() => onButtonAutoplayClick(onPrevButtonClick)}
-            disabled={prevBtnDisabled}
-          />
-          <NextButton
-            onClick={() => onButtonAutoplayClick(onNextButtonClick)}
-            disabled={nextBtnDisabled}
-          />
-        </div>
-
-        <Button
-          variant={`outline`}
-          className=""
-          onClick={toggleAutoplay}
-          type="button"
-        >
-          {isPlaying ? "Stop" : "Start"}
-        </Button>
-      </div>
+      <div className="bg-transparent w-32 h-[100%] absolute bg-gradient-to-r from-transparent via-white/50 to-white top-0 right-0 z-20" />
     </div>
   );
 };
