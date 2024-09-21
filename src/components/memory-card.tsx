@@ -22,12 +22,12 @@ const MemoryCard = ({ image, title, date, content }: MemoryCardProps) => {
     <div className="w-full hover:opacity-90 overflow-hidden rounded-lg border border-gray-200 shadow-md shrink-0 grow-0 cursor-pointer hover:scale-105 hover:shadow-xl transition-all">
       <Image
         src={image}
-        height={800}
-        width={800}
+        height={500}
+        width={1000}
         alt="image"
         className="w-full h-44 -z-10 transition duration-1000 hover:scale-110"
       />
-      <div className="w-full flex justify-between items-center px-1 mt-2">
+      <div className="w-full flex justify-between items-center px-3 mt-2">
         <h3 className="w-1/2 truncate font-semibold text-lg tracking-tight">
           {title}
         </h3>
@@ -35,7 +35,7 @@ const MemoryCard = ({ image, title, date, content }: MemoryCardProps) => {
           {format(date, "dd/MM/yyyy")}
         </div>
       </div>
-      <div className="mt-4 px-1 mb-8">
+      <div className="mt-4 px-3 mb-8">
         <p className="truncate">{content}</p>
       </div>
     </div>

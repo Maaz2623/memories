@@ -13,9 +13,12 @@ import { Button } from "./ui/button";
 import { ChevronsUpDownIcon, PlusCircleIcon } from "lucide-react";
 import Image from "next/image";
 import Hint from "./hint";
+import { useCreateYearModal } from "@/features/years/store/use-create-year-modal";
 
 const Navbar = () => {
   const years = [2020, 2021, 2022, 2023, 2024].reverse();
+
+  const [open, setOpen] = useCreateYearModal();
 
   return (
     <nav className="w-full justify-between flex items-center py-2 border-b px-4">
@@ -31,17 +34,21 @@ const Navbar = () => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent side="bottom" className="w-[250px] ml-6">
-          <DropdownMenuLabel>Available years</DropdownMenuLabel>
+          <DropdownMenuLabel className="text-md font-semibold">
+            Available years
+          </DropdownMenuLabel>
           <DropdownMenuSeparator />
           {years.map((year) => (
-            <DropdownMenuItem className="font-base" key={year}>
+            <DropdownMenuItem className="font-medium cursor-pointer" key={year}>
               {year}
             </DropdownMenuItem>
           ))}
           <DropdownMenuSeparator />
-          <DropdownMenuItem className="flex justify-between items-center">
-            <p className="text-base font-medium">New Year</p>
-            <PlusCircleIcon className="ml-2 size-5" />
+          <DropdownMenuItem className="flex justify-between items-center cursor-pointer w-full">
+            <Button variant={`ghost`} className="flex w-full justify-between items-center cursor-pointer" onClick={() => !open}>
+              <p className="text-base font-medium">Create new year</p>
+              <PlusCircleIcon className="ml-2 size-5" />
+            </Button>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

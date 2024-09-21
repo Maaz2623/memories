@@ -7,6 +7,9 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import Sidebar from "@/components/sidebar";
+import { ConvexClientProvider } from "@/components/convex-client-provider";
+import { JotaiProvider } from "@/components/jotai-provider";
+import { Modals } from "@/components/modals";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,18 +24,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased`}>
-        <Navbar />
-        <ResizablePanelGroup direction="horizontal">
-          <ResizablePanel maxSize={20} defaultSize={15} minSize={10}>
-            <Sidebar />
-          </ResizablePanel>
-          <ResizableHandle withHandle />
-          <ResizablePanel defaultSize={80}>
-            <div className="min-h-screen px-8 w-full bg-gradient-radial from-green-700 via-green-500 to-green-200">
-              {children}
-            </div>
-          </ResizablePanel>
-        </ResizablePanelGroup>
+        <ConvexClientProvider>
+          <JotaiProvider>
+            <Modals />
+            <Navbar />
+            <ResizablePanelGroup direction="horizontal">
+              <ResizablePanel maxSize={20} defaultSize={15} minSize={10}>
+                <Sidebar />
+              </ResizablePanel>
+              <ResizableHandle withHandle />
+              <ResizablePanel defaultSize={80}>
+                <div className="min-h-screen px-8 w-full bg-gradient-radial from-green-700 via-green-500 to-green-200">
+                  {children}
+                </div>
+              </ResizablePanel>
+            </ResizablePanelGroup>
+          </JotaiProvider>
+        </ConvexClientProvider>
       </body>
     </html>
   );
