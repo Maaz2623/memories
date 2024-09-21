@@ -3,6 +3,7 @@
 import React from "react";
 import {
   DropdownMenu,
+  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
@@ -10,15 +11,32 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "./ui/button";
-import { ChevronsUpDownIcon, PlusCircleIcon } from "lucide-react";
+import { ChevronsUpDownIcon, Loader2Icon, PlusCircleIcon } from "lucide-react";
 import Image from "next/image";
 import Hint from "./hint";
 import { useCreateYearModal } from "@/features/years/store/use-create-year-modal";
+import { useGetYears } from "@/features/years/api/use-get-years";
+import useYearId from "@/hooks/use-year-id";
+import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
+import { useRouter } from "next/navigation";
+import { useGetYear } from "@/features/years/api/use-get-year";
+
+type Checked = DropdownMenuCheckboxItemProps["checked"];
 
 const Navbar = () => {
-  const years = [2020, 2021, 2022, 2023, 2024].reverse();
+  const yearId = useYearId();
+
+  const { data: years, isLoading: yearsLoading } = useGetYears();
+
+  const filteredYears = years?.filter((year) => year.name);
 
   const [open, setOpen] = useCreateYearModal();
+
+  const { data: currentYear, isLoading: currentYearLoading } = useGetYear({
+    id: yearId,
+  });
+
+  const router = useRouter();
 
   return (
     <nav className="w-full justify-between flex items-center py-2 border-b px-4">
@@ -29,7 +47,13 @@ const Navbar = () => {
             variant={`outline`}
             size={`sm`}
           >
-            {years[0]}
+            <p className="w-1/2 justify-center flex items-center">
+              {currentYearLoading ? (
+                <Loader2Icon className="size-3 animate-spin text-muted-foreground" />
+              ) : (
+                currentYear?.name
+              )}
+            </p>
             <ChevronsUpDownIcon className="ml-3 size-4" />
           </Button>
         </DropdownMenuTrigger>
@@ -38,14 +62,23 @@ const Navbar = () => {
             Available years
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          {years.map((year) => (
-            <DropdownMenuItem className="font-medium cursor-pointer" key={year}>
-              {year}
-            </DropdownMenuItem>
+          {filteredYears?.map(({ name, _id }) => (
+            <DropdownMenuCheckboxItem
+              onClick={() => router.push(`/year/${_id}`)}
+              checked={_id === yearId}
+              className="font-medium cursor-pointer"
+              key={_id}
+            >
+              {name}
+            </DropdownMenuCheckboxItem>
           ))}
           <DropdownMenuSeparator />
           <DropdownMenuItem className="flex justify-between items-center cursor-pointer w-full">
-            <Button variant={`ghost`} className="flex w-full justify-between items-center cursor-pointer" onClick={() => !open}>
+            <Button
+              variant={`ghost`}
+              className="flex w-full justify-between items-center cursor-pointer"
+              onClick={() => setOpen(true)}
+            >
               <p className="text-base font-medium">Create new year</p>
               <PlusCircleIcon className="ml-2 size-5" />
             </Button>

@@ -16,6 +16,7 @@ import type {
   FunctionReference,
 } from "convex/server";
 import type * as months from "../months.js";
+import type * as upload from "../upload.js";
 import type * as years from "../years.js";
 
 /**
@@ -28,6 +29,7 @@ import type * as years from "../years.js";
  */
 declare const fullApi: ApiFromModules<{
   months: typeof months;
+  upload: typeof upload;
   years: typeof years;
 }>;
 export declare const api: FilterApi<

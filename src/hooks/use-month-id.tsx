@@ -3,10 +3,10 @@ import React from "react";
 import { useParams } from "next/navigation";
 import { Id } from "../../convex/_generated/dataModel";
 
-const useYearId = () => {
+const useMonthId = () => {
   const params = useParams();
 
-  return params.yearId as Id<"years">;
+  return params.monthId as Id<"months">;
 };
 
-export default useYearId;
+export default useMonthId;

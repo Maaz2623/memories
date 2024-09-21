@@ -45,7 +45,7 @@ export const CreateYearModal = () => {
     <Dialog open={open} onOpenChange={handleClose}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Add a workspace</DialogTitle>
+          <DialogTitle>Add a new year</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
@@ -59,9 +59,9 @@ export const CreateYearModal = () => {
             type="number"
             placeholder="Enter year e.g. '2005'"
           />
-          <div className="flex justify-end">
-            <Button disabled={isPending} type="submit">
-                Create
+          <div className="flex w-full items-center justify-end">
+            <Button disabled={isPending} type="submit" className="ml-auto">
+              Create
             </Button>
           </div>
         </form>

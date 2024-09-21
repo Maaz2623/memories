@@ -10,6 +10,7 @@ import Sidebar from "@/components/sidebar";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
 import { JotaiProvider } from "@/components/jotai-provider";
 import { Modals } from "@/components/modals";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,18 +24,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>
+      <body className={`antialiased min-h-screen flex flex-col`}>
         <ConvexClientProvider>
           <JotaiProvider>
             <Modals />
             <Navbar />
-            <ResizablePanelGroup direction="horizontal">
-              <ResizablePanel maxSize={20} defaultSize={15} minSize={10}>
+            <ResizablePanelGroup direction="horizontal" className="rflex">
+              <ResizablePanel
+                maxSize={20}
+                defaultSize={15}
+                minSize={10}
+                className="flex-1 border-blue-500 border-2"
+              >
                 <Sidebar />
               </ResizablePanel>
-              <ResizableHandle withHandle />
+              <ResizableHandle withHandle className="h-screen" />
               <ResizablePanel defaultSize={80}>
-                <div className="min-h-screen px-8 w-full bg-gradient-radial from-green-700 via-green-500 to-green-200">
+                <div className="min-h-screen overflow-y-auto px-8 w-full bg-gradient-radial from-green-700 via-green-500 to-green-200">
                   {children}
                 </div>
               </ResizablePanel>

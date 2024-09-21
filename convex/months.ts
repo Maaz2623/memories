@@ -1,21 +1,16 @@
 import { v } from "convex/values";
-import { mutation } from "./_generated/server";
+import { mutation, query } from "./_generated/server";
 
-export const create = mutation({
-    args: {
-        name: v.string(),
-        yearId: v.id("years")
-    },
-    handler: async (ctx, args) => {
+export const getByYearId = query({
+  args: {
+    yearId: v.id("years"),
+  },
+  handler: async (ctx, args) => {
+    const months = await ctx.db
+      .query("months")
+      .withIndex("by_year_id", (q) => q.eq("yearId", args.yearId))
+      .collect();
 
-        const parsedMonth = args.name.toLowerCase()
-
-        const monthId = await ctx.db.insert("months", {
-            name: parsedMonth,
-            yearId: args.yearId
-        })
-
-
-        return monthId
-    }
-})
+    return months;
+  },
+});

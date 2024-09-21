@@ -18,6 +18,24 @@ interface MemoryCardProps {
 }
 
 const MemoryCard = ({ image, title, date, content }: MemoryCardProps) => {
+  function getOrdinalSuffix(day: number) {
+    if (day > 3 && day < 21) return "th"; // Covers 11th-13th
+    switch (day % 10) {
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+      default:
+        return "th";
+    }
+  }
+
+  const day: number = parseInt(format(date, "d"), 10);
+
+  const ordinalSuffix: string = getOrdinalSuffix(day); // Get the suffix
+
   return (
     <div className="w-full hover:opacity-90 overflow-hidden rounded-lg border border-gray-200 shadow-md shrink-0 grow-0 cursor-pointer hover:scale-105 hover:shadow-xl transition-all">
       <Image
@@ -31,8 +49,8 @@ const MemoryCard = ({ image, title, date, content }: MemoryCardProps) => {
         <h3 className="w-1/2 truncate font-semibold text-lg tracking-tight">
           {title}
         </h3>
-        <div className="bg-gray-200 rounded-sm w-[90px] truncate text-sm flex justify-center items-center font-normal h-[fit-content]">
-          {format(date, "dd/MM/yyyy")}
+        <div className="bg-gray-200 font-mono rounded-sm w-[40px] truncate text-sm flex justify-center items-center font-normal h-[fit-content]">
+          {`${day}${ordinalSuffix}`}
         </div>
       </div>
       <div className="mt-4 px-3 mb-8">

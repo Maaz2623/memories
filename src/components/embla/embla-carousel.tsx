@@ -7,7 +7,7 @@ import { slides } from "../../../public/mock";
 import { Card, CardContent } from "../ui/card";
 
 const EmblaCarousel = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [AutoScroll()]);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, []);
 
   useEffect(() => {
     if (emblaApi) {
@@ -18,7 +18,10 @@ const EmblaCarousel = () => {
   return (
     <Card className="w-full items-center relative">
       <div className="bg-transparent w-32 h-[100%] absolute bg-gradient-to-l from-transparent via-white/50 to-white top-0 left-0 z-20" />
-      <CardContent className="overflow-hidden my-2 p-4 w-full h-[30vh]" ref={emblaRef}>
+      <CardContent
+        className="overflow-hidden my-2 p-4 w-full h-[30vh]"
+        ref={emblaRef}
+      >
         <div className="flex w-1/4 h-full">
           {slides.map((image) => (
             <Image
