@@ -1,6 +1,5 @@
 import { v } from "convex/values";
-import { mutation, query, QueryCtx } from "./_generated/server";
-import { GenericMutationCtx } from "convex/server";
+import { mutation, query } from "./_generated/server";
 
 export const getById = query({
   args: {

@@ -34,7 +34,7 @@ export default function RootLayout({
                 maxSize={20}
                 defaultSize={15}
                 minSize={10}
-                className="flex-1 border-blue-500 border-2"
+                className="flex-1"
               >
                 <Sidebar />
               </ResizablePanel>

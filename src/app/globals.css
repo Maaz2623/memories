@@ -78,7 +78,7 @@
 .ql-container {
   font-family: "Lato", sans-serif !important;
   border: none !important;
-  height: unset !important;
+  height: 30vh !important;
 }
 
 .ql-editor {

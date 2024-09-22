@@ -18,8 +18,6 @@ const Sidebar = () => {
 
   const { data: months, isLoading: monthsLoading } = useGetMonths({ yearId });
 
-  console.log(months);
-
   return (
     <div className="px-4 h-full stick top-0">
       <div className="h-full">

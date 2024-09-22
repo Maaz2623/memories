@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+  images: {
+    domains: ["energetic-civet-681.convex.cloud"],
+  },
+};
 
 export default nextConfig;
