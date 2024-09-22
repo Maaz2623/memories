@@ -29,7 +29,7 @@ export default function RootLayout({
           <JotaiProvider>
             <Modals />
             <Navbar />
-            <ResizablePanelGroup direction="horizontal" className="rflex">
+            {/* <ResizablePanelGroup direction="horizontal" className="rflex">
               <ResizablePanel
                 maxSize={20}
                 defaultSize={15}
@@ -44,7 +44,7 @@ export default function RootLayout({
                   {children}
                 </div>
               </ResizablePanel>
-            </ResizablePanelGroup>
+            </ResizablePanelGroup> */}
           </JotaiProvider>
         </ConvexClientProvider>
       </body>

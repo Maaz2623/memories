@@ -11,7 +11,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "./ui/button";
-import { ChevronsUpDownIcon, Loader2Icon, PlusCircleIcon } from "lucide-react";
+import {
+  ChevronsUpDownIcon,
+  Loader2Icon,
+  PlusCircleIcon,
+  SearchIcon,
+} from "lucide-react";
 import Image from "next/image";
 import Hint from "./hint";
 import { useCreateYearModal } from "@/features/years/store/use-create-year-modal";
@@ -20,6 +25,8 @@ import useYearId from "@/hooks/use-year-id";
 import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
 import { useRouter } from "next/navigation";
 import { useGetYear } from "@/features/years/api/use-get-year";
+import SearchBar from "./search-bar";
+import { useSearchBar } from "@/hooks/use-search-bar";
 
 type Checked = DropdownMenuCheckboxItemProps["checked"];
 
@@ -114,7 +121,7 @@ const Navbar = () => {
           ies
         </h1>
       </div>
-      <div>UserButton</div>
+      <SearchBar />
     </nav>
   );
 };
