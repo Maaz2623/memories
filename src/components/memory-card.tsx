@@ -12,7 +12,6 @@ import Image from "next/image";
 import { format } from "date-fns";
 import { Id } from "../../convex/_generated/dataModel";
 import { useRouter } from "next/navigation";
-import { useMemoryDetailsStore } from "@/features/memories/store/use-memory-details-store";
 import dynamic from "next/dynamic";
 
 const CardRenderer = dynamic(() => import("@/components/card-renderer"), {
@@ -20,14 +19,14 @@ const CardRenderer = dynamic(() => import("@/components/card-renderer"), {
 });
 
 interface MemoryCardProps {
-  image: string | undefined;
+  image: string;
   title: string;
   date: string;
   content: string;
   id: Id<"memories">;
 }
 
-const MemoryCard = ({ image, title, date, content }: MemoryCardProps) => {
+const MemoryCard = ({ image, title, date, content, id }: MemoryCardProps) => {
   function getOrdinalSuffix(day: number) {
     if (day > 3 && day < 21) return "th"; // Covers 11th-13th
     switch (day % 10) {
@@ -46,22 +45,22 @@ const MemoryCard = ({ image, title, date, content }: MemoryCardProps) => {
 
   const ordinalSuffix: string = getOrdinalSuffix(day); // Get the suffix
 
-  const [open, setOpen] = useMemoryDetailsStore();
-
   return (
     <div
-      onClick={() => setOpen(true)}
+      onClick={() => {
+        console.log({
+          id,
+        });
+      }}
       className="w-full hover:opacity-90 overflow-hidden rounded-lg border border-gray-200 shadow-md shrink-0 grow-0 cursor-pointer hover:scale-105 hover:shadow-xl transition-all"
     >
-      <Suspense fallback={<div>Loading Image</div>}>
-        <Image
-          src={image || ""}
-          height={500}
-          width={500}
-          alt="image"
-          className="w-full h-44 -z-10 transition duration-1000 hover:scale-110"
-        />
-      </Suspense>
+      <Image
+        src={image || ""}
+        height={500}
+        width={500}
+        alt="image"
+        className="w-full h-44 -z-10 transition duration-1000 hover:scale-110"
+      />
       <div className="w-full flex justify-between items-center px-3 mt-2">
         <h3 className="w-1/2 truncate font-semibold text-lg tracking-tight">
           {title}

@@ -15,12 +15,6 @@ const EmblaCarousel = () => {
     AutoScroll({ startDelay: 2000, speed: 0.8 }),
   ]);
 
-  useEffect(() => {
-    if (emblaApi) {
-      console.log(emblaApi.slideNodes());
-    }
-  }, [emblaApi]);
-
   const yearId = useYearId();
 
   const { data: memories, isLoading: memoriesLoading } = useGetMemoriesByYear({
@@ -28,8 +22,6 @@ const EmblaCarousel = () => {
   });
 
   if (!memories) return;
-
-  console.log(memories);
 
   return (
     <Card className="w-full items-center relative">

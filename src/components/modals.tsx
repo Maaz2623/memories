@@ -17,7 +17,6 @@ export const Modals = () => {
 
   return (
     <>
-      <MemoryDetailsModal />
       <Toaster duration={3000} />
       <CreateMemoryModal />
       <CreateYearModal />

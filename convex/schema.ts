@@ -13,7 +13,7 @@ const schema = defineSchema({
     title: v.string(),
     date: v.string(),
     body: v.string(),
-    image: v.optional(v.id("_storage")),
+    image: v.id("_storage"),
     video: v.optional(v.id("_storage")),
     yearId: v.id("years"),
     monthId: v.id("months"),
