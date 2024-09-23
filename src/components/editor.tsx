@@ -199,7 +199,7 @@ const Editor = ({
   const [open, setOpen] = useCreateMemoryModalStore();
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col border w-[800px] max-w-[800px]">
       <input
         type="file"
         accept="image/*"
@@ -234,6 +234,7 @@ const Editor = ({
           <DialogContent className="w-[fit-content]">
             <Calendar
               classNames={{
+                multiple_months: "hidden",
                 nav_button_previous: "hidden",
                 nav_button_next: "hidden",
               }}
@@ -245,7 +246,7 @@ const Editor = ({
           </DialogContent>
         </Dialog>
       </div>
-      <div className="flex flex-col border border-slate-200 rounded-md overflow-hidden focus-within:border-slate-300 focus-within:shadow-sm transition bg-white">
+      <div className="flex flex-col border border-green-500 max-w-full rounded-md overflow-hidden focus-within:border-slate-300 focus-within:shadow-sm transition bg-white">
         <div ref={containerRef} className="h-full ql-custom" />
         {!!image && (
           <div className="p-2">

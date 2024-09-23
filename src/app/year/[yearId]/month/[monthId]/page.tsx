@@ -30,8 +30,8 @@ const MonthIdPage = () => {
         </h2>
         <EmblaCarousel />
       </div>
-      <Separator className="my-10 bg-emerald-500/80" />
-      <div className="h-auto">
+      <Separator className="my-10 bg-emerald-500/40" />
+      <div className="h-[fit-content]">
         <div className="w-full flex justify-between items-center">
           <h2 className="text-3xl flex font-semibold tracking-tight text-gray-900">
             <span className="text-emerald-500 mx-1">Our</span>Book of Memories
@@ -43,6 +43,7 @@ const MonthIdPage = () => {
             + Add
           </Button>
         </div>
+        
         <Memories />
       </div>
     </div>

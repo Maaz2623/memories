@@ -62,7 +62,7 @@ const MemoryCard = ({ image, title, date, content, id }: MemoryCardProps) => {
         className="w-full h-44 -z-10 transition duration-1000 hover:scale-110"
       />
       <div className="w-full flex justify-between items-center px-3 mt-2">
-        <h3 className="w-1/2 truncate font-semibold text-lg tracking-tight">
+        <h3 className="w-1/2 truncate font-semibold text-lg tracking-tight text-start">
           {title}
         </h3>
         <div className="bg-gray-200 font-mono rounded-sm w-[40px] truncate text-sm flex justify-center items-center font-normal h-[fit-content]">

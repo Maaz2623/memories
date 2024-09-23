@@ -4,7 +4,7 @@ import { mutation, query } from "./_generated/server";
 export const create = mutation({
   args: {
     body: v.string(),
-    image: v.optional(v.id("_storage")),
+    image: v.id("_storage"),
     video: v.optional(v.id("_storage")),
     yearId: v.id("years"),
     monthId: v.id("months"),

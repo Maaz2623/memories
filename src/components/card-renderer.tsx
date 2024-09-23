@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Quill from "quill";
+import { ScrollArea } from "./ui/scroll-area";
 
 interface CardRendererProps {
   value: string;
@@ -43,12 +44,7 @@ const CardRenderer = ({ value }: CardRendererProps) => {
 
   if (isEmpty) return null;
 
-  return (
-    <div
-      ref={rendererRef}
-      className="ql-editor ql-renderer truncate text-nowrap"
-    />
-  );
+  return <div ref={rendererRef} className="ql-editor ql-renderer" />;
 };
 
 export default CardRenderer;

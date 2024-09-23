@@ -24,27 +24,32 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased min-h-screen flex flex-col`}>
+      <body className={`antialiased h-full flex flex-col`}>
         <ConvexClientProvider>
           <JotaiProvider>
             <Modals />
             <Navbar />
-            {/* <ResizablePanelGroup direction="horizontal" className="rflex">
-              <ResizablePanel
-                maxSize={20}
-                defaultSize={15}
-                minSize={10}
-                className="flex-1"
+            <div className="flex">
+              <ResizablePanelGroup
+                direction="horizontal"
+                className="flex fixed left-0"
               >
-                <Sidebar />
-              </ResizablePanel>
-              <ResizableHandle withHandle className="h-screen" />
-              <ResizablePanel defaultSize={80}>
-                <div className="min-h-screen overflow-y-auto px-8 w-full bg-gradient-radial from-green-700 via-green-500 to-green-200">
-                  {children}
-                </div>
-              </ResizablePanel>
-            </ResizablePanelGroup> */}
+                <ResizablePanel
+                  maxSize={20}
+                  defaultSize={15}
+                  minSize={10}
+                  className="flex-1"
+                >
+                  <Sidebar />
+                </ResizablePanel>
+                <ResizableHandle withHandle className="h-screen sticky top-0" />
+                <ResizablePanel defaultSize={80}>
+                  <ScrollArea className="px-8 w-full bg-gradient-radial h-screen from-green-700 via-green-500 to-green-200">
+                    {children}
+                  </ScrollArea>
+                </ResizablePanel>
+              </ResizablePanelGroup>
+            </div>
           </JotaiProvider>
         </ConvexClientProvider>
       </body>

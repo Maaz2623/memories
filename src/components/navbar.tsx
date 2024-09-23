@@ -46,7 +46,7 @@ const Navbar = () => {
   const router = useRouter();
 
   return (
-    <nav className="w-full justify-between flex items-center py-2 border-b px-4">
+    <nav className="w-full sticky top-0 backdrop-blur-lg bg-white/20 z-50 justify-between flex items-center h-16 border-b px-4">
       <DropdownMenu>
         <DropdownMenuTrigger className="w-[150px]" asChild>
           <Button

@@ -19,7 +19,7 @@ const Sidebar = () => {
   const { data: months, isLoading: monthsLoading } = useGetMonths({ yearId });
 
   return (
-    <div className="px-4 h-full stick top-0">
+    <div className="px-4 h-full z-50">
       <div className="h-full">
         <div className="flex gap-2 justify-start items-center mt-2">
           <Button

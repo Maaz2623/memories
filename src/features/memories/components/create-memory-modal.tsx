@@ -17,7 +17,7 @@ const CreateMemoryModal = () => {
 
   return (
     <AlertDialog open={open} onOpenChange={handleClose}>
-      <AlertDialogContent className="border max-w-full w-[80%] h-[80%] max-h-screen">
+      <AlertDialogContent className="border max-w-[80%] w-[fit-content] h-[fit-content]">
         <ChatInput placeholder={`Write something...`} />
       </AlertDialogContent>
     </AlertDialog>
