@@ -4,7 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "energetic-civet-681.convex.cloud",
+        hostname: "sleek-cat-262.convex.cloud",
         port: "",
       },
     ],
