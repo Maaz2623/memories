@@ -22,8 +22,8 @@ const HomePage = () => {
     e.preventDefault();
 
     // Use NEXT_PUBLIC for environment variables in client-side code
-    const correctUsername = process.env.NEXT_PUBLIC_USERNAME;
-    const correctPassword = process.env.NEXT_PUBLIC_PASSWORD;
+    const correctUsername = "maaz";
+    const correctPassword = "123";
 
     if (username === correctUsername && password === correctPassword) {
       setLoading(true);
