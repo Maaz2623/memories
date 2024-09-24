@@ -1,6 +1,5 @@
 "use client";
-import React, { Suspense, useState } from "react";
-import { memories } from "../../public/mock";
+import React from "react";
 import MemoryCard from "./memory-card";
 import useYearId from "@/hooks/use-year-id";
 import useMonthId from "@/hooks/use-month-id";
@@ -9,16 +8,13 @@ import { Loader2Icon, TriangleAlertIcon } from "lucide-react";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import Image from "next/image";
-import { useMemoryDetails } from "@/features/memories/store/use-memory-details-store";
 import dynamic from "next/dynamic";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Skeleton } from "./ui/skeleton";
 
 const CardRenderer = dynamic(() => import("@/components/card-renderer"), {
   ssr: false,
@@ -32,8 +28,6 @@ const Memories = () => {
     yearId: yearId,
     monthId: monthId,
   });
-
-  const [isRendering, setIsRendering] = useState(false);
 
   return (
     <div className="btransition-all mb-40">
@@ -56,7 +50,7 @@ const Memories = () => {
       <div className="w-full pt-4 grid grid-cols-3 gap-x-16 gap-y-6 transition-all">
         {memories?.map((memory, index) => {
           return (
-            <Dialog>
+            <Dialog key={index}>
               <DialogTrigger>
                 <MemoryCard
                   id={memory._id}

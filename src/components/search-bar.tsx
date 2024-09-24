@@ -1,22 +1,9 @@
 import React from "react";
 import { Button } from "./ui/button";
-import { SearchIcon } from "lucide-react";
-import {
-  Command,
-  CommandDialog,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandSeparator,
-  CommandShortcut,
-} from "@/components/ui/command";
 import { useSearchBar } from "@/hooks/use-search-bar";
-import { useGetMemoriesByYear } from "@/features/memories/api/use-get-memories-by-year";
 
 const SearchBar = () => {
-  const [open, setOpen] = useSearchBar();
+  const [, setOpen] = useSearchBar();
 
   return (
     <Button

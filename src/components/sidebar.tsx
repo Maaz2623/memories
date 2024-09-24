@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Button } from "./ui/button";
-import { FaCaretDown, FaCaretRight } from "react-icons/fa";
+import { FaCaretRight } from "react-icons/fa";
 import { useToggle } from "react-use";
 import { cn } from "@/lib/utils";
 import MonthButton from "./month-button";
@@ -53,6 +53,7 @@ const Sidebar = () => {
           >
             {months?.map((month) => (
               <MonthButton
+                key={month._id}
                 yearId={month.yearId}
                 name={month.name}
                 monthId={month._id}

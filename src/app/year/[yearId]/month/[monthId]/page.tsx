@@ -4,20 +4,18 @@ import Memories from "@/components/memories";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useGetMemories } from "@/features/memories/api/use-get-memories";
-import { useGetMemoriesByYear } from "@/features/memories/api/use-get-memories-by-year";
 import { useCreateMemoryModalStore } from "@/features/memories/store/use-create-memory-modal-store";
 import useMonthId from "@/hooks/use-month-id";
 import useYearId from "@/hooks/use-year-id";
 import { Loader2Icon } from "lucide-react";
-import React, { memo } from "react";
 
 const MonthIdPage = () => {
-  const [open, setOpen] = useCreateMemoryModalStore();
+  const [, setOpen] = useCreateMemoryModalStore();
 
   const yearId = useYearId();
   const monthId = useMonthId();
 
-  const { data: memories, isLoading: memoriesLoading } = useGetMemories({
+  const { isLoading: memoriesLoading } = useGetMemories({
     yearId,
     monthId,
   });

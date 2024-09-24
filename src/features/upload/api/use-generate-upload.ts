@@ -1,5 +1,4 @@
 import { useCallback, useMemo, useState } from "react";
-import { Id } from "../../../../convex/_generated/dataModel";
 import { useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 
@@ -13,8 +12,8 @@ type Options = {
 };
 
 export const useGenerateUploadUrl = () => {
-  const [data, setData] = useState<ResponseType>(null);
-  const [error, setError] = useState<Error | null>(null);
+  const [data, ] = useState<ResponseType>(null);
+  const [error, ] = useState<Error | null>(null);
   const [status, setStatus] = useState<
     "success" | "error" | "settled" | "pending" | null
   >(null);
@@ -27,6 +26,7 @@ export const useGenerateUploadUrl = () => {
   const mutation = useMutation(api.upload.generateUploadUrl);
 
   const mutate = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
     async (_values: {}, options?: Options) => {
       try {
         setStatus("pending");

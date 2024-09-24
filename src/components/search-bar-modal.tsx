@@ -1,24 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
-  Command,
   CommandDialog,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
-  CommandShortcut,
 } from "@/components/ui/command";
 import { useSearchBar } from "@/hooks/use-search-bar";
 import { useGetMemoriesByYear } from "@/features/memories/api/use-get-memories-by-year";
 import useYearId from "@/hooks/use-year-id";
-import { AlertTriangleIcon, Loader2Icon } from "lucide-react";
+import { Loader2Icon } from "lucide-react";
 import Image from "next/image";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -42,7 +38,7 @@ const SearchBarModal = () => {
     };
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, []);
+  }, [setOpen]);
 
   const yearId = useYearId();
 
@@ -50,11 +46,9 @@ const SearchBarModal = () => {
     setOpen(false);
   };
 
-  const { data: memories, isLoading: memoriesLoading } = useGetMemoriesByYear({
+  const { data: memories } = useGetMemoriesByYear({
     yearId: yearId,
   });
-
-  const [loading, setLoading] = useState(true);
 
   return (
     <CommandDialog open={open} onOpenChange={handleClose}>
@@ -63,7 +57,7 @@ const SearchBarModal = () => {
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Suggestions">
           {memories?.map((memory) => (
-            <Dialog>
+            <Dialog key={memory._id}>
               <CommandItem key={memory._id} className="">
                 <DialogTrigger className="w-full h-full flex items-center justify-between">
                   <p className="font-medium truncate w-[80%] text-start">

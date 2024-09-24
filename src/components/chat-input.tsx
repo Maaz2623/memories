@@ -26,7 +26,7 @@ type CreateMemoryValues = {
 const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
 
 const ChatInput = ({ placeholder }: ChatInputProps) => {
-  const [open, setOpen] = useCreateMemoryModalStore();
+  const [, setOpen] = useCreateMemoryModalStore();
 
   const editorRef = useRef<Quill | null>(null);
 
@@ -42,7 +42,6 @@ const ChatInput = ({ placeholder }: ChatInputProps) => {
   const handleSubmit = async ({
     body,
     image,
-    video,
     title,
     date,
   }: {
@@ -92,7 +91,7 @@ const ChatInput = ({ placeholder }: ChatInputProps) => {
       setOpen(false);
       toast.success("Memory created successfully.");
     } catch (error) {
-      toast.error("Failed to create memory.");
+      toast.error(`Failed to create memory. ${error}`);
     } finally {
       setIsPending(false);
       editorRef?.current?.enable(true);

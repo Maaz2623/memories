@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import Quill from "quill";
-import { ScrollArea } from "./ui/scroll-area";
 
 interface CardRendererProps {
   value: string;

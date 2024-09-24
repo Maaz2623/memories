@@ -11,33 +11,24 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "./ui/button";
-import {
-  ChevronsUpDownIcon,
-  Loader2Icon,
-  PlusCircleIcon,
-  SearchIcon,
-} from "lucide-react";
+import { ChevronsUpDownIcon, Loader2Icon, PlusCircleIcon } from "lucide-react";
 import Image from "next/image";
 import Hint from "./hint";
 import { useCreateYearModal } from "@/features/years/store/use-create-year-modal";
 import { useGetYears } from "@/features/years/api/use-get-years";
 import useYearId from "@/hooks/use-year-id";
-import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
 import { useRouter } from "next/navigation";
 import { useGetYear } from "@/features/years/api/use-get-year";
 import SearchBar from "./search-bar";
-import { useSearchBar } from "@/hooks/use-search-bar";
-
-type Checked = DropdownMenuCheckboxItemProps["checked"];
 
 const Navbar = () => {
   const yearId = useYearId();
 
-  const { data: years, isLoading: yearsLoading } = useGetYears();
+  const { data: years } = useGetYears();
 
   const filteredYears = years?.filter((year) => year.name);
 
-  const [open, setOpen] = useCreateYearModal();
+  const [, setOpen] = useCreateYearModal();
 
   const { data: currentYear, isLoading: currentYearLoading } = useGetYear({
     id: yearId,
@@ -96,7 +87,7 @@ const Navbar = () => {
       <div className="flex-grow flex items-start justify-center cursor-default gap-1">
         <Hint label="Forever" duration={150}>
           <Image
-            src={`/assets/logo`}
+            src={`/assets/logo.png`}
             alt="logo"
             width={45}
             height={45}

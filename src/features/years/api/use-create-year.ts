@@ -17,8 +17,8 @@ type Options = {
 };
 
 export const useCreateYear = () => {
-  const [data, setData] = useState<ResponseType>(null);
-  const [error, setError] = useState<Error | null>(null);
+  const [data] = useState<ResponseType>(null);
+  const [error] = useState<Error | null>(null);
   const [status, setStatus] = useState<
     "success" | "error" | "settled" | "pending" | null
   >(null);

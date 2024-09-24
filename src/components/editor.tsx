@@ -9,18 +9,11 @@ import React, {
 import Quill, { QuillOptions } from "quill";
 import "quill/dist/quill.snow.css";
 import { Button } from "./ui/button";
-import { PiTextAa } from "react-icons/pi";
-import { MdSend } from "react-icons/md";
 import {
   CalendarIcon,
-  FileVideo2Icon,
-  FileVideoIcon,
   ImagesIcon,
   Loader2Icon,
   SmileIcon,
-  VideoIcon,
-  VideotapeIcon,
-  XCircleIcon,
   XIcon,
 } from "lucide-react";
 import Hint from "./hint";
@@ -30,7 +23,6 @@ import EmojiPopover from "./emoji-popover";
 import Image from "next/image";
 import { useCreateMemoryModalStore } from "@/features/memories/store/use-create-memory-modal-store";
 import { Input } from "./ui/input";
-import { AlertDialog } from "./ui/alert-dialog";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import { format } from "date-fns";
 import { Calendar } from "./ui/calendar";
@@ -67,7 +59,6 @@ const Editor = ({
 }: EditorProps) => {
   const [text, setText] = useState("");
   const [image, setImage] = useState<File | null>(null);
-  const [video, setVideo] = useState<File | null>(null);
   const [date, setDate] = React.useState<Date>();
   const [title, setTitle] = useState("");
 
@@ -153,9 +144,9 @@ const Editor = ({
     };
   }, [innerRef]);
 
-  const isEmpty =
-    !video && !image && text.replace(/<(.|\n)*?>/g, "").trim().length === 0;
+  const isEmpty = !image && text.replace(/<(.|\n)*?>/g, "").trim().length === 0;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onEmojiSelect = (emoji: any) => {
     const quill = quillRef.current;
 
@@ -202,7 +193,7 @@ const Editor = ({
     });
   };
 
-  const [open, setOpen] = useCreateMemoryModalStore();
+  const [, setOpen] = useCreateMemoryModalStore();
 
   return (
     <div className="flex flex-col w-[800px] max-w-[800px]">
@@ -261,7 +252,7 @@ const Editor = ({
                 <button
                   onClick={() => {
                     setImage(null);
-                    imageElementRef.current!.value === "";
+                    imageElementRef.current!.value = "";
                   }}
                   className="hidden group-hover/image:flex rounded-full bg-black/70 hover:bg-black absolute -top-2.5 -right-2.5 text-white size-6 z-[4] border-2 border-white items-center justify-center"
                 >

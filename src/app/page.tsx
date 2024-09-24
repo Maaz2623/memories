@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { useGetYears } from "@/features/years/api/use-get-years";
 import { Loader2Icon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { toast } from "sonner";
 
 const HomePage = () => {

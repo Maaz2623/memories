@@ -1,9 +1,4 @@
 import React, { useState } from "react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
 import {
@@ -12,12 +7,12 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { AlertDialog } from "./ui/alert-dialog";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 
 interface EmojiPopoverProps {
   children: React.ReactNode;
   hint?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onEmojiSelect: (emoji: any) => void;
 }
 
@@ -28,7 +23,7 @@ const EmojiPopover = ({
 }: EmojiPopoverProps) => {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const [tooltipOpen, setTooltipOpen] = useState(false);
-
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSelect = (emoji: any) => {
     onEmojiSelect(emoji);
     setTooltipOpen(false);

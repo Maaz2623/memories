@@ -1,23 +1,9 @@
 "use client";
-import React, { Suspense, useState } from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import React, { useState } from "react";
 import Image from "next/image";
 import { format } from "date-fns";
 import { Id } from "../../convex/_generated/dataModel";
-import { useRouter } from "next/navigation";
-import dynamic from "next/dynamic";
 import { Loader2Icon } from "lucide-react";
-
-const CardRenderer = dynamic(() => import("@/components/card-renderer"), {
-  ssr: false,
-});
 
 interface MemoryCardProps {
   image: string;
@@ -27,7 +13,7 @@ interface MemoryCardProps {
   id: Id<"memories">;
 }
 
-const MemoryCard = ({ image, title, date, content, id }: MemoryCardProps) => {
+const MemoryCard = ({ image, title, date, id }: MemoryCardProps) => {
   function getOrdinalSuffix(day: number) {
     if (day > 3 && day < 21) return "th"; // Covers 11th-13th
     switch (day % 10) {

@@ -1,35 +1,21 @@
 "use client";
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React from "react";
 import AutoScroll from "embla-carousel-auto-scroll";
-import { slides } from "../../../public/mock";
 import { Card, CardContent } from "../ui/card";
-import { Skeleton } from "../ui/skeleton";
 import { useGetMemoriesByYear } from "@/features/memories/api/use-get-memories-by-year";
 import useYearId from "@/hooks/use-year-id";
-import {
-  AlertTriangleIcon,
-  Loader2Icon,
-  TriangleAlertIcon,
-} from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { TriangleAlertIcon } from "lucide-react";
 
 const EmblaCarousel = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
+  const [emblaRef] = useEmblaCarousel({ loop: true }, [
     AutoScroll({ startDelay: 2000, speed: 0.8 }),
   ]);
 
   const yearId = useYearId();
 
-  const { data: memories, isLoading: memoriesLoading } = useGetMemoriesByYear({
+  const { data: memories } = useGetMemoriesByYear({
     yearId: yearId,
   });
 

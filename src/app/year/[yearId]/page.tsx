@@ -2,7 +2,7 @@
 import { useGetMonths } from "@/features/months/api/use-get-months";
 import useYearId from "@/hooks/use-year-id";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 
 const YearIdPage = () => {
   const yearId = useYearId();
@@ -18,7 +18,7 @@ const YearIdPage = () => {
     if (monthId) {
       router.replace(`/year/${yearId}/month/${monthId}`);
     }
-  }, [months, monthsLoading]);
+  }, [months, monthsLoading, monthId, router, yearId]);
 
   return;
 };

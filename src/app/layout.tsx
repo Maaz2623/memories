@@ -1,16 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Navbar from "@/components/navbar";
-import {
-  ResizableHandle,
-  ResizablePanel,
-  ResizablePanelGroup,
-} from "@/components/ui/resizable";
-import Sidebar from "@/components/sidebar";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
 import { JotaiProvider } from "@/components/jotai-provider";
-import { Modals } from "@/components/modals";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,32 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`antialiased h-full flex flex-col`}>
         <ConvexClientProvider>
-          <JotaiProvider>
-            {/* <Modals />
-            <Navbar />
-            <div className="flex">
-              <ResizablePanelGroup
-                direction="horizontal"
-                className="flex fixed left-0"
-              >
-                <ResizablePanel
-                  maxSize={20}
-                  defaultSize={15}
-                  minSize={10}
-                  className="flex-1"
-                >
-                  <Sidebar />
-                </ResizablePanel>
-                <ResizableHandle withHandle className="h-screen sticky top-0" />
-                <ResizablePanel defaultSize={80}>
-                  <ScrollArea className="px-8 w-full bg-gradient-radial h-screen from-green-700 via-green-500 to-green-200">
-                    {children}
-                  </ScrollArea>
-                </ResizablePanel>
-              </ResizablePanelGroup>
-            </div> */}
-            {children}
-          </JotaiProvider>
+          <JotaiProvider>{children}</JotaiProvider>
         </ConvexClientProvider>
       </body>
     </html>
