@@ -15,10 +15,12 @@ const MonthIdPage = () => {
   const yearId = useYearId();
   const monthId = useMonthId();
 
-  const { isLoading: memoriesLoading } = useGetMemories({
+  const { data: memories, isLoading: memoriesLoading } = useGetMemories({
     yearId,
     monthId,
   });
+
+  console.log(memories);
 
   return (
     <div className="px-6 pt-10">
