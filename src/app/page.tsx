@@ -22,8 +22,8 @@ const HomePage = () => {
     e.preventDefault();
 
     // Use NEXT_PUBLIC for environment variables in client-side code
-    const correctUsername = "maaz";
-    const correctPassword = "123";
+    const correctUsername = "RuMaaz";
+    const correctPassword = "2509";
 
     if (username === correctUsername && password === correctPassword) {
       setLoading(true);
