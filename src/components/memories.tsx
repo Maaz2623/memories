@@ -29,6 +29,8 @@ const Memories = () => {
     monthId: monthId,
   });
 
+  console.log(memories);
+
   return (
     <div className="btransition-all mb-40">
       {memoriesLoading && (
