@@ -18,6 +18,7 @@ import Image from "next/image";
 import { useMemoryDetails } from "@/features/memories/store/use-memory-details-store";
 import dynamic from "next/dynamic";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Skeleton } from "./ui/skeleton";
 
 const CardRenderer = dynamic(() => import("@/components/card-renderer"), {
   ssr: false,
@@ -36,6 +37,14 @@ const Memories = () => {
 
   return (
     <div className="btransition-all mb-40">
+      {memoriesLoading && (
+        <div className="w-full h-[350px] flex justify-center items-start pt-20 text-muted-foreground">
+          <div className="flex flex-col justify-center items-center">
+            <Loader2Icon className="text-emerald-500/80 animate-spin" />
+            <p>Loading memories</p>
+          </div>
+        </div>
+      )}
       {!memories?.length && (
         <div className="w-full h-[350px] flex justify-center items-start pt-20 text-muted-foreground">
           <div className="flex flex-col justify-center items-center">

@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className={`antialiased h-full flex flex-col`}>
         <ConvexClientProvider>
           <JotaiProvider>
-            <Modals />
+            {/* <Modals />
             <Navbar />
             <div className="flex">
               <ResizablePanelGroup
@@ -49,7 +49,8 @@ export default function RootLayout({
                   </ScrollArea>
                 </ResizablePanel>
               </ResizablePanelGroup>
-            </div>
+            </div> */}
+            {children}
           </JotaiProvider>
         </ConvexClientProvider>
       </body>

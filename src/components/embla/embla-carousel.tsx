@@ -8,7 +8,11 @@ import { Card, CardContent } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";
 import { useGetMemoriesByYear } from "@/features/memories/api/use-get-memories-by-year";
 import useYearId from "@/hooks/use-year-id";
-import { AlertTriangleIcon, TriangleAlertIcon } from "lucide-react";
+import {
+  AlertTriangleIcon,
+  Loader2Icon,
+  TriangleAlertIcon,
+} from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -32,12 +36,20 @@ const EmblaCarousel = () => {
   if (!memories) return;
 
   return (
-    <Card className="w-full items-center relative">
+    <Card className="w-full border-none shadow-none items-center relative">
       <div className="bg-transparent w-32 h-[100%] absolute bg-gradient-to-l from-transparent via-white/50 to-white top-0 left-0 z-20" />
       <CardContent
-        className="overflow-hidden my-2 p-4 w-full h-[30vh]"
+        className="overflow-hidden border-none shadow-none my-2 p-4 w-full h-[30vh]"
         ref={emblaRef}
       >
+        {!memories?.length && (
+          <div className="w-full h-[350px] flex justify-center items-start pt-20 text-muted-foreground">
+            <div className="flex flex-col justify-center items-center">
+              <TriangleAlertIcon className="" />
+              <p>No memories created in this month yet</p>
+            </div>
+          </div>
+        )}
         <div className="flex w-1/4 h-full">
           {memories?.map((memory) => (
             <Image

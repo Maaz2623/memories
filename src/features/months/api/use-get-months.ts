@@ -8,10 +8,10 @@ interface UseGetMonthsProps {
 
 export const useGetMonths = ({ yearId }: UseGetMonthsProps) => {
   const data = useQuery(api.months.getByYearId, { yearId });
-  const isLoading = data === undefined
+  const isLoading = data === undefined;
 
   return {
     data,
-    isLoading
-  }
+    isLoading,
+  };
 };

@@ -5,6 +5,7 @@ import { CreateYearModal } from "@/features/years/components/use-year-modal";
 import { useEffect, useState } from "react";
 import { Toaster } from "sonner";
 import SearchBarModal from "./search-bar-modal";
+import { LoginModal } from "@/features/security/components/login-modal";
 
 export const Modals = () => {
   const [mounted, setMounted] = useState(false);
@@ -17,6 +18,7 @@ export const Modals = () => {
 
   return (
     <>
+      <LoginModal />
       <SearchBarModal />
       <Toaster duration={3000} />
       <CreateMemoryModal />

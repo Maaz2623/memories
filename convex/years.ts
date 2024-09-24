@@ -3,9 +3,11 @@ import { mutation, query } from "./_generated/server";
 
 export const getById = query({
   args: {
-    id: v.id("years"),
+    id: v.optional(v.id("years")),
   },
   handler: async (ctx, args) => {
+    if (!args.id) return;
+
     const year = await ctx.db.get(args.id);
 
     if (!year) {

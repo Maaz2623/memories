@@ -34,6 +34,7 @@ import { AlertDialog } from "./ui/alert-dialog";
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog";
 import { format } from "date-fns";
 import { Calendar } from "./ui/calendar";
+import { toast } from "sonner";
 
 type EditorValue = {
   image: File | null;
@@ -179,9 +180,13 @@ const Editor = ({
 
     if (isEmpty) return;
 
-    if (!date) return;
+    if (!text) return toast.error("You must add some text.");
 
-    if (!image) return;
+    if (!date) return toast.error("You must select a date.");
+
+    if (!image) return toast.error("You must add an image.");
+
+    if (!title) return toast.error("You must add a title.");
 
     const body = JSON.stringify(quill?.getContents());
 

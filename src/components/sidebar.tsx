@@ -39,7 +39,10 @@ const Sidebar = () => {
         </div>
         {monthsLoading && (
           <div className="w-full h-full flex justify-center items-start pt-32">
-            <Loader2Icon className="size-6 animate-spin text-emerald-500/80" />
+            <div className="flex text-muted-foreground flex-col justify-center items-center">
+              <Loader2Icon className="size-6 animate-spin text-emerald-500/80" />
+              <p>Loading months</p>
+            </div>
           </div>
         )}
         {on && (

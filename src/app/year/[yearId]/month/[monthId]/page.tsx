@@ -8,6 +8,7 @@ import { useGetMemoriesByYear } from "@/features/memories/api/use-get-memories-b
 import { useCreateMemoryModalStore } from "@/features/memories/store/use-create-memory-modal-store";
 import useMonthId from "@/hooks/use-month-id";
 import useYearId from "@/hooks/use-year-id";
+import { Loader2Icon } from "lucide-react";
 import React, { memo } from "react";
 
 const MonthIdPage = () => {
@@ -28,7 +29,16 @@ const MonthIdPage = () => {
           A Glimpse into <span className="text-emerald-500 mx-1">Our</span>
           Cherished Moments
         </h2>
-        <EmblaCarousel />
+        {memoriesLoading ? (
+          <div className="h-[25vh] w-full flex justify-center items-center">
+            <div className="flex flex-col justify-center items-center text-muted-foreground">
+              <Loader2Icon className="text-emerald-500/80 animate-spin" />
+              <p>Loading slide show</p>
+            </div>
+          </div>
+        ) : (
+          <EmblaCarousel />
+        )}
       </div>
       <Separator className="my-10 bg-emerald-500/40" />
       <div className="h-[fit-content]">
@@ -43,7 +53,7 @@ const MonthIdPage = () => {
             + Add
           </Button>
         </div>
-        
+
         <Memories />
       </div>
     </div>
