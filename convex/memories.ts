@@ -4,7 +4,7 @@ import { mutation, query } from "./_generated/server";
 export const create = mutation({
   args: {
     body: v.string(),
-    image: v.id("_storage"),
+    image: v.optional(v.id("_storage")),
     video: v.optional(v.id("_storage")),
     yearId: v.id("years"),
     monthId: v.id("months"),
@@ -44,7 +44,7 @@ export const get = query({
     // Correct memory formatting
     const formattedMemories = await Promise.all(
       memories.map(async (memory) => {
-        const image = await ctx.storage.getUrl(memory.image); // Await the URL retrieval
+        const image = await ctx.storage.getUrl(memory.image!); // Await the URL retrieval
 
         return {
           ...memory, // Correctly reference memory (not memories)

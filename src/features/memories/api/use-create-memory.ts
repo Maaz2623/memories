@@ -7,7 +7,7 @@ type RequestType = {
   body: string;
   title: string;
   date: string;
-  image: Id<"_storage">;
+  image: Id<"_storage"> | undefined;
   yearId: Id<"years">;
   monthId: Id<"months">;
 };

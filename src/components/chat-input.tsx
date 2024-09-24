@@ -86,7 +86,6 @@ const ChatInput = ({ placeholder }: ChatInputProps) => {
 
         values.image = storageId;
       }
-
       await createMemory(values, { throwError: true });
       setOpen(false);
       toast.success("Memory created successfully.");
