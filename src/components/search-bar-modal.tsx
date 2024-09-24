@@ -95,28 +95,24 @@ const SearchBarModal = () => {
                         alt="image"
                       />
                     </DialogTrigger>
-                    <DialogContent className="max-w-screen w-[800px] bg-transparent border-none">
-                      <div className="border-2 overflow-hidden rounded-2xl relative">
-                        {memory.image ? (
-                          <>
+                    <DialogContent className="max-w-screen w-[800px] border-none">
+                      <div className="overflow-hidden rounded-2xl relative">
+                        <div className="w-full h-[80vh]">
+                          {memory.image === null || memory.image === "" ? (
+                            <Loader2Icon className="w-12 h-12 animate-spin text-white" />
+                          ) : (
                             <Image
-                              src={memory.image}
-                              width={800}
-                              height={500}
+                              src={memory.image || ""}
+                              quality={50}
+                              // width={800}
+                              fill
+                              // height={500}
                               alt="image"
-                              className="w-full h-full"
-                              onLoadingComplete={() => setLoading(false)}
-                              onError={() => setLoading(false)} // Optional: handle errors
+                              priority
+                              className="object-cover w-full aspect-square h-full overflow-hidden"
                             />
-                            {loading && (
-                              <div className="absolute inset-0 flex items-center justify-center bg-transparent">
-                                <Loader2Icon className="animate-spin size-4" />
-                              </div>
-                            )}
-                          </>
-                        ) : (
-                          <Loader2Icon className="animate-spin size-4" />
-                        )}
+                          )}
+                        </div>
                       </div>
                     </DialogContent>
                   </Dialog>

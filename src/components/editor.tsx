@@ -98,6 +98,7 @@ const Editor = ({
       placeholder: placeholderRef.current,
       modules: {
         toolbar: [
+          [{ header: [1, 2, 3, false] }],
           ["bold", "italic", "strike"],
           ["link"],
           [{ list: "ordered" }, { list: "bullet" }],
@@ -199,7 +200,7 @@ const Editor = ({
   const [open, setOpen] = useCreateMemoryModalStore();
 
   return (
-    <div className="flex flex-col border w-[800px] max-w-[800px]">
+    <div className="flex flex-col w-[800px] max-w-[800px]">
       <input
         type="file"
         accept="image/*"

@@ -44,9 +44,7 @@ export const get = query({
     // Correct memory formatting
     const formattedMemories = await Promise.all(
       memories.map(async (memory) => {
-        const image = memory.image
-          ? await ctx.storage.getUrl(memory.image) // Await the URL retrieval
-          : undefined;
+        const image = await ctx.storage.getUrl(memory.image); // Await the URL retrieval
 
         return {
           ...memory, // Correctly reference memory (not memories)

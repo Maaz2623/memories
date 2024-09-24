@@ -9,6 +9,14 @@ import { Skeleton } from "../ui/skeleton";
 import { useGetMemoriesByYear } from "@/features/memories/api/use-get-memories-by-year";
 import useYearId from "@/hooks/use-year-id";
 import { AlertTriangleIcon, TriangleAlertIcon } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const EmblaCarousel = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
@@ -30,38 +38,18 @@ const EmblaCarousel = () => {
         className="overflow-hidden my-2 p-4 w-full h-[30vh]"
         ref={emblaRef}
       >
-        {!memories.length && (
-          <div className="flex text-muted-foreground w-full h-full justify-center items-center">
-            <div className="flex flex-col justify-center items-center">
-              <TriangleAlertIcon className="" />
-              <p>No memories created yet</p>
-            </div>
-          </div>
-        )}
-        {memoriesLoading && (
-          <div className="flex h-full">
-            <Skeleton className="h-full w-[350px] ml-4 bg-gray-200" />
-            <Skeleton className="h-full w-[350px] ml-4 bg-gray-200" />
-            <Skeleton className="h-full w-[350px] ml-4 bg-gray-200" />
-            <Skeleton className="h-full w-[350px] ml-4 bg-gray-200" />
-          </div>
-        )}
         <div className="flex w-1/4 h-full">
-          {memories?.map(
-            (memory) =>
-              memory.image ? (
-                <Image
-                  src={memory?.image || "/placeholder.jpg"} // Fallback to a placeholder image if undefined
-                  alt="memory image"
-                  width={200}
-                  height={200}
-                  key={memory.image}
-                  className="ml-4 rounded-xl h-full w-[350px] hover:scale-105 duration-200 transition-all"
-                />
-              ) : null // Skip rendering if no image is available
-          )}
+          {memories?.map((memory) => (
+            <Image
+              src={memory?.image || "/placeholder.jpg"} // Fallback to a placeholder image if undefined
+              alt="memory image"
+              width={200}
+              height={200}
+              key={memory.image}
+              className="ml-4 rounded-xl cursor-pointer h-full w-[350px] hover:scale-110 duration-200 transition-all"
+            />
+          ))}
         </div>
-        s
       </CardContent>
       <div className="bg-transparent w-32 h-[100%] absolute bg-gradient-to-r from-transparent via-white/50 to-white top-0 right-0 z-20" />
     </Card>

@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import {
   Card,
   CardContent,
@@ -13,6 +13,7 @@ import { format } from "date-fns";
 import { Id } from "../../convex/_generated/dataModel";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
+import { Loader2Icon } from "lucide-react";
 
 const CardRenderer = dynamic(() => import("@/components/card-renderer"), {
   ssr: false,
@@ -45,6 +46,8 @@ const MemoryCard = ({ image, title, date, content, id }: MemoryCardProps) => {
 
   const ordinalSuffix: string = getOrdinalSuffix(day); // Get the suffix
 
+  const [loading, setLoading] = useState(false);
+
   return (
     <div
       onClick={() => {
@@ -54,13 +57,21 @@ const MemoryCard = ({ image, title, date, content, id }: MemoryCardProps) => {
       }}
       className="w-full hover:opacity-90 overflow-hidden rounded-lg border border-gray-200 shadow-md shrink-0 grow-0 cursor-pointer hover:scale-105 hover:shadow-xl transition-all"
     >
-      <Image
-        src={image || ""}
-        height={500}
-        width={500}
-        alt="image"
-        className="w-full h-44 -z-10 transition duration-1000 hover:scale-110"
-      />
+      {loading ? (
+        <Loader2Icon />
+      ) : (
+        <Image
+          src={image || ""}
+          height={500}
+          width={500}
+          alt="image"
+          loading="lazy"
+          onLoadStart={() => setLoading(true)}
+          quality={50}
+          onLoadingComplete={() => setLoading(false)}
+          className="w-full h-44 -z-10 transition duration-1000 hover:scale-110"
+        />
+      )}
       <div className="w-full flex justify-between items-center px-3 mt-2">
         <h3 className="w-1/2 truncate font-semibold text-lg tracking-tight text-start">
           {title}
