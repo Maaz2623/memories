@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["energetic-civet-681.convex.cloud"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "energetic-civet-681.convex.cloud",
+        port: "",
+      },
+    ],
   },
 };
 
