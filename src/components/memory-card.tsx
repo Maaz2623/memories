@@ -34,6 +34,10 @@ const MemoryCard = ({ image, title, date, id }: MemoryCardProps) => {
 
   const [loading, setLoading] = useState(false);
 
+  console.log({
+    image,
+  });
+
   return (
     <div
       onClick={() => {
