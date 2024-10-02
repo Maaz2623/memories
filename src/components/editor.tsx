@@ -230,11 +230,6 @@ const Editor = ({
           </Hint>
           <DialogContent className="w-[fit-content]">
             <Calendar
-              classNames={{
-                multiple_months: "hidden",
-                nav_button_previous: "hidden",
-                nav_button_next: "hidden",
-              }}
               mode="single"
               selected={date}
               onSelect={setDate}
